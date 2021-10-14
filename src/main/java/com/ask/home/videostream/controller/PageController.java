@@ -17,11 +17,13 @@ public class PageController {
     }
 	
 	String element1ForReturn = "<html> <h1> Miller's Streaming </h1>"+
-			                      "<br> <h2>Video Url</h2>"+
-								  "<br> localhost:8080/video/stream/videoExtension/videoName"+
-							      "<br> <a href=\"/video/stream/mp4/toystory\">Example</a>"+
-			                      "<br> <H2>Video Folder</h2>"+
-			                      "<br> C:/Users/Root/Desktop/FolderName/AppFolderName/target/classes/videoFolder"+
+			                      "<br>" +
+			                      "<font size=\"-1\"> <h3>Video Url: </h3>"+
+								  "localhost:8080/video/stream/videoExtension/videoName"+
+							      "- <a href=\"/video/stream/mp4/toystory\">Example</a>"+
+			                      "<br> <H3>Video Folder: </h3>"+
+			                      "C:/Users/Root/Desktop/FolderName/AppFolderName/target/classes/videoFolder"+
+			                      "</font>" +
 			                      "<br> <h2>Files</h2>"+
 							      "<br><form action=\"/refresh\">\n" +
 							      "<input type=\"submit\" value=\"Get/Refresh Folder Items\" /></form> </html>";
@@ -29,6 +31,7 @@ public class PageController {
 	String indexElementsForReturn = element1ForReturn;
 	String folderItems = "";
 
+	//indexe girildiginde surekli islem tekrarlamasin diye var.
 	@GetMapping("/refresh")
 	public String refresh()
 	{
@@ -37,7 +40,14 @@ public class PageController {
 
 
 		ListFolderItems listFolderItems = new ListFolderItems();
+		/* Before
 		for (Object veri:listFolderItems.getFiles()) {
+			folderItems = folderItems +"<br>"+ veri;
+		}
+		*/
+
+		//After
+		for (Object veri:listFolderItems.itemsToLink()) {
 			folderItems = folderItems +"<br>"+ veri;
 		}
 		return "<a href=\"#\" onclick=\"javascript:window.history.back(-1);return false;\">Loading..</a>"+

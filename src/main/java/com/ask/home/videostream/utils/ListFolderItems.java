@@ -38,5 +38,41 @@ public class ListFolderItems {
         return folderItemsArr;
     }
 
+    public ArrayList itemsToLink(){
+        ArrayList<String> filesArray = getFiles();
+        ArrayList<String> result = new ArrayList<>();
+        ArrayList<String> result2Link = new ArrayList<>();
+        for (String item:filesArray) {
+            String[] temp = item.split("\\\\");
+            int lenghtOfTemp = temp.length;
+            result.add(temp[lenghtOfTemp-1].toString());
+
+        }
+
+        //Result2Link
+        for (String selectItem:result) {
+            if (selectItem.contains(".")){
+                String[] temp = selectItem.split("\\.");
+                if (temp.length > 0) {
+                    String fileName = temp[0];
+                    String fileExtension = temp[1];
+                    String linkTemplate = "<a href=\\video/stream/" + fileExtension + "/" + fileName + "\\>" + selectItem + "</a>";
+                    result2Link.add(linkTemplate);
+                } else {
+                    System.out.println("eksik veya yanlış bir rakam tuşladınız.");
+                }
+            }else{
+                String linkTemplate = "Dosya formatı -> "+"[Dosya ismi].[Dosya Uzantısı]" + " şeklinde olmalı.";
+                result2Link.add(linkTemplate);
+            }
+        }
+
+        //Return result or result2link
+        return result2Link;
+
+
+
+    }
+
 }
 
