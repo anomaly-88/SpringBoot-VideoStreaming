@@ -1,5 +1,7 @@
 VIDEO STREAM HTTP V2
 
+Next: Dosya isimlendirirken . ve diğer özel karakterler, boşluk gibi unsurlar problem yaratıyor, bunun üzerine bir geliştirme yapılacak. 
+
 - index page configured
 - the items in the folder have been made listable
 
